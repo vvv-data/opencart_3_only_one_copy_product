@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>only one copy product</name>                
+  <code>only_one_copy_product</code>                
+  <version>1.0</version>           
+  <author>vvvdata</author>           
+  <link>https://vvvdata.ru</link>  
+ 
+<file path="system/library/cart/cart.php">  
+  <operation error="skip">
+    <search>                           
+      <![CDATA[
+        $this->db->query("UPDATE " . DB_PREFIX . "cart SET quantity
+      ]]>
+    </search>
+    <add position="before">             
+      <![CDATA[
+       if(false)]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/controller/checkout/cart.php">  
+  <operation error="skip">
+    <search>                           
+      <![CDATA[
+        if (isset($this->request->post['recurring_id']))
+      ]]>
+    </search>
+    <add position="before">             
+      <![CDATA[
+        $products = $this->cart->getProducts();  
+        $yes = 1;                    	
+  	    foreach ($products as $product) 
+        {    if ($product['product_id'] == $product_id) {   $yes = 0;
+                foreach ($product_options as $product_option) {			        
+                    foreach ($product['option'] as $option_cart) {                       
+                       if($product_option['product_option_id'] == $option_cart['product_option_id']) {                             
+                          if(!isset($option[$product_option['product_option_id']])) {                          
+                            $option[$product_option['product_option_id']] = "";                            
+                          } if(!isset($option_cart['value'])) {                          
+                              $option_cart['value'] = "";
+                          } if($option[$product_option['product_option_id']] != $option_cart['value']) $yes = 1;                      
+                        }
+			              }   
+                }  
+             }    
+        }   
+        if($yes == 0)   $json['error']['recurring'] = $this->language->get('error_recurring_option'); 
+       ]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/language/en-gb/checkout/cart.php">  
+  <operation error="skip">
+    <search>                           
+      <![CDATA[Success: You have modified your shopping cart!]]>
+    </search>
+    <add position="replace">             
+      <![CDATA[Warning: You can add only one copy of the product to the cart!]]>
+    </add>
+  </operation>
+</file>
+<file path="catalog/language/ru-ru/checkout/cart.php">  
+  <operation error="skip">
+    <search>                           
+      <![CDATA['Корзина покупок изменена!']]>
+    </search>
+    <add position="replace">             
+      <![CDATA['Можно добавить только одну копию товара в корзину!']]>
+    </add>
+  </operation>
+</file>
+</modification>
