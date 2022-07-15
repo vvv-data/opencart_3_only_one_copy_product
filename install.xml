@@ -7,15 +7,24 @@
   <link>https://vvvdata.ru</link>  
  
 <file path="system/library/cart/cart.php">  
-  <operation error="skip">
+  <operation>
     <search>                           
       <![CDATA[
         $this->db->query("UPDATE " . DB_PREFIX . "cart SET quantity
       ]]>
     </search>
     <add position="before">             
+      <![CDATA[/*]]>
+    </add>
+  </operation>
+  <operation>
+    <search>                           
       <![CDATA[
-       if(false)]]>
+        $this->db->query("UPDATE " . DB_PREFIX . "cart SET quantity
+      ]]>
+    </search>
+    <add position="after">             
+      <![CDATA[*/]]>
     </add>
   </operation>
 </file>
