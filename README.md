@@ -15,4 +15,4 @@ The module does not allow you to add more than 1 piece of the same product to th
 ![screenshot2](https://user-images.githubusercontent.com/106067946/180024520-c084a0d2-af36-418b-8bf0-b6bcb7d5b951.jpg)
 
 #### Если покупатель пытается обновить количество товара, то не зависимо от введенного количества остается1 шт. и выводится сообщение:
-![screenshot2](https://user-images.githubusercontent.com/106067946/180024520-c084a0d2-af36-418b-8bf0-b6bcb7d5b951.jpg)
+![screenshot3](https://user-images.githubusercontent.com/106067946/180024765-946b99d5-9057-423a-aba4-3995ccbd5037.jpg)
