@@ -3,7 +3,7 @@
   <name>only one copy product</name>                
   <code>only_one_copy_product</code>                
   <version>1.0</version>           
-  <author>vvvdata</author>           
+  <author>vvv-data</author>           
   <link>https://vvvdata.ru</link>  
  
 <file path="system/library/cart/cart.php"> 
